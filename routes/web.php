@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [DashBoardController::class, 'dashboard'])->name('dashboard');
     Route::get('/reset-password', [AuthController::class, 'resetPassword'])->name('resetpassword');

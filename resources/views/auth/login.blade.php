@@ -5,7 +5,7 @@
         <div class="panel panel-body login-form">
 
             <div class="text-center">
-                <div><img src="{{ asset('assets/images/logo.png') }}" alt=""></div>
+                <div><img src="{{ asset('assets/images/mockups/logo.png') }}" alt="" width="150" height="150"></div>
                 <h5 class="content-group">Login to your account <small class="display-block">Enter your
                         credentials below</small></h5>
             </div>
@@ -37,9 +37,9 @@
                         class="icon-circle-right2 position-right"></i></button>
             </div>
 
-            <div class="text-center">
+            {{--  <div class="text-center">
                 <a href="{{ route('register') }}">Create New Account</a>
-            </div>
+            </div>  --}}
         </div>
     </form>
 @endsection

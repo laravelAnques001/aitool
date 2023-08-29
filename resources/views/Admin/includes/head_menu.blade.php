@@ -2,7 +2,7 @@
 <div class="navbar navbar-default header-highlight">
     <div class="navbar-header navbar-header-color">
         <a class="navbar-brand navbar-brand-header" href="#">
-            <img src="{{ asset('assets/images/logo_light.png') }}" alt="">
+            <img src="{{ asset('assets/images/mockups/logo.png') }}" alt="">
         </a>
 
         <ul class="nav navbar-nav visible-xs-block">
@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu nav-hide">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="hidden-xs">My account</span>
+                        <img src="{{ auth()->user()->image_url }}" class="rounded-circle" width="20" height="18">                        <span class="hidden-xs">My account</span>
                     </a>
                     <ul class="dropdown-menu">
 
