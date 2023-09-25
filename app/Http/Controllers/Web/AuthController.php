@@ -94,21 +94,29 @@ class AuthController extends Controller
     public function profileUpdate(Request $request)
     {
         $userId = auth()->id();
-        $validated = Validator::make($request->all(), [
+        // $validated = Validator::make($request->all(), [
+        //     'name' => 'nullable|string|min:3',
+        //     'email' => 'nullable|email|unique:users,email,' . $userId,
+        //     'mobile_number' => 'nullable|digits_between:10,12|unique:users,mobile_number,' . $userId,
+        //     'image' => 'nullable|image',
+        // ]);
+        // if ($validated->fails()) {
+        //     return $this->sendError($validated->errors(), 'Validation Error.');
+        // }
+
+        $request->validate([
             'name' => 'nullable|string|min:3',
-            'email' => 'nullable|email|unique:users,email,' . $userId,
+            'email' => 'nullable|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix|unique:users,email,' . $userId,
             'mobile_number' => 'nullable|digits_between:10,12|unique:users,mobile_number,' . $userId,
             'image' => 'nullable|image',
         ]);
 
-        if ($validated->fails()) {
-            return $this->sendError($validated->errors(), 'Validation Error.');
-        }
         $validated = $request->all();
         $user = User::find($userId);
-
-        if ($image = $request->image ?? null) {
-            if ($oldImage = $user->image ?? null) {
+        $image = isset($request->image) ? $request->image : null;
+        $oldImage = isset($user->image) ? $user->image : null;
+        if ($image) {
+            if ($oldImage) {
                 $fileCheck = storage_path('app/' . $oldImage);
                 if (file_exists($fileCheck)) {
                     unlink($fileCheck);
@@ -123,17 +131,15 @@ class AuthController extends Controller
 
     public function resetPassword()
     {
-        $user = Auth::user();
-        $users = User::where('id', "=", $user->id)->first();
-        return view('Admin/Auth/resetPassword', ['users' => $users]);
+        return view('Admin/Auth/resetPassword');
     }
 
     public function resetPasswordStore(Request $request)
     {
-        $validate = $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required',
-            'confirm_password' => 'required|same:new_password',
+        $request->validate([
+            'old_password' => 'required|min:6',
+            'new_password' => 'required|min:6',
+            'confirm_password' => 'required|min:6|same:new_password',
         ]);
         $user = Auth::user();
         if (Hash::check($request->old_password, $user->password)) {

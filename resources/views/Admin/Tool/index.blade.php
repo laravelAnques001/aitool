@@ -56,7 +56,8 @@
                         "sortable": false
                     },
                     {
-                        "data": "id"
+                        'data': 'DT_RowIndex',
+                        'searchable': false,
                     },
                     {
                         "data": "name"
@@ -178,7 +179,7 @@
                     } else if ($(this).prop("checked") == false) {
                         state = 0;
                     }
-                    var url = "{{URL::to('tool/status')}}";
+                    var url = "{{ URL::to('tool/status') }}";
                     url = url + "/" + id + "/" + state;
                     $.ajax({
                         url: url,
@@ -214,7 +215,7 @@
         <div class="page-header">
             <div class="page-header-content">
                 <div class="page-title">
-                    <h4><span class="text-semibold">Tool list</span></h4>
+                    <h4><span class="text-semibold">Tool List</span></h4>
                 </div>
                 <div class="heading-elements">
                     <div class="heading-btn-group">

@@ -9,10 +9,10 @@
         $(document).ready(function() {
             $('#formadd').validate({ // initialize the plugin
                 rules: {
-                    new_password: {
+                    old_password: {
                         required: true,
                     },
-                    old_password: {
+                    new_password: {
                         required: true,
                     },
                     confirm_password: {
@@ -22,11 +22,11 @@
 
                 },
                 messages: {
-                    new_password: {
-                        required: "New Password field is required.",
-                    },
                     old_password: {
                         required: "Old Password field is required.",
+                    },
+                    new_password: {
+                        required: "New Password field is required.",
                     },
                     confirm_password: {
                         required: "Confirm Password field is required.",
@@ -37,14 +37,14 @@
             });
         });
 
-        function myFunction() {
+        {{--  function myFunction() {
             var x = document.getElementById("myInput");
             if (x.type === "password") {
                 x.type = "text";
             } else {
                 x.type = "password";
             }
-        }
+        }  --}}
 
         $('#formadd').submit(function() {
             if ($(this).valid()) {
@@ -78,49 +78,54 @@
             <div class="col-md-12">
                 <form method="post" action="{{ route('resetpassword.store') }}" id="formadd">
                     @csrf
-                    <div class="panel panel-flat">
-                        <div class="panel-heading">
-                            <h5 class="panel-title">Change Password</h5>
+                    <div class="form-horizontal">
+                        <div class="panel panel-flat">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">Change Password</h5>
 
-                        </div>
-
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label>Email</label>
-                                    <input type="text" name="email" class="form-control" value="{{ $users->email }}"
-                                        readonly>
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label>New Password</label>
-                                    <input type="password" id="myInput" name="new_password" class="form-control"
-                                        placeholder="Enter New Pasword">
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label>Old Password</label>
-                                    <input type="password" id="password-field" name="old_password" class="form-control"
-                                        placeholder="Enter Old Password">
-                                    @error('old_password')
-                                        <span style="color:red"> {{ $message }} </span>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label>Repeat Password</label>
-                                    <input type="password" name="confirm_password" class="form-control"
-                                        placeholder="Repeat New Password">
-                                    @error('confirm_password')
-                                        <span style="color:red"> {{ $message }} </span>
-                                    @enderror
-                                </div>
                             </div>
 
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label" for="old_password">Old Password <span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="old_password" id="old_password"
+                                            placeholder="Enter Old Pasword" >
+                                        @error('old_password')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
 
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-labeled-right1 bg-blue heading-btn">Update
-                                    Password</button>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label" for="new_password">New Password <span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="new_password" id="new_password"
+                                            placeholder="Enter New Pasword">
+                                        @error('new_password')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label" for="confirm_password">Confirm Password <span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="confirm_password"
+                                            id="confirm_password" placeholder="Enter Confirm Pasword">
+                                        @error('confirm_password')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-labeled-right1 bg-blue heading-btn">Update
+                                        Password</button>
+                                </div>
                             </div>
                         </div>
                     </div>

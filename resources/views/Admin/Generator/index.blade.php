@@ -56,7 +56,8 @@
                         "sortable": false
                     },
                     {
-                        "data": "id"
+                        'data': 'DT_RowIndex',
+                        'searchable': false,
                     },
                     {
                         "data": "name"
@@ -223,7 +224,7 @@
         <div class="page-header">
             <div class="page-header-content">
                 <div class="page-title">
-                    <h4><span class="text-semibold">Generator list</span></h4>
+                    <h4><span class="text-semibold">Generator List</span></h4>
                 </div>
                 <div class="heading-elements">
                     <div class="heading-btn-group">
@@ -242,7 +243,7 @@
         <!-- /page header -->
 
         <!-- Content area -->
-        <div class="content">
+        <div class="content pb-0">
             <!-- Page length options -->
             <div class="panel panel-flat">
                 <div class="panel-body">

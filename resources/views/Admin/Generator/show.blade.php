@@ -76,7 +76,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Generator Description:</label>
                                     <div class="col-lg-9">
-                                        <p class="form-control">{{ $generator->description }}</p>
+                                        <p >{{ $generator->description }}</p>
                                     </div>
                                 </div>
 
